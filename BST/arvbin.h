@@ -30,5 +30,6 @@ public:
     void inserirAux(No* no, int chave);
     No* getRaiz();
     void emOrdem(No* no);
-    void imprimir(No* no);
+    //void imprimir(No* no);
+    void busca(No* no, int chave);
 };

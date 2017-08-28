@@ -76,12 +76,31 @@ void Arvore::emOrdem(No* no){
     }
 }
 
-void Arvore::imprimir(No* no){
+// void Arvore::imprimir(No* no){
+//     if(no != nullptr){
+//         emOrdem(no->getEsq());
+//         cout << no->getChave() << " ";
+//         emOrdem(no->getDir());
+//     }
+// }
+
+
+void Arvore::busca(No* no, int chave){
     if(no != nullptr){
-        emOrdem(no->getEsq());
-        cout << no->getChave() << " ";
-        emOrdem(no->getDir());
+
+        if (chave == no->getChave()) {
+            cout << '\n' << "================" << endl;
+            cout         << "Busca concluída!" << '\n' << "Item encontrado!" << '\n';
+            cout         << "================" << endl;
+            //return;
+        }
+        busca(no->getEsq(), chave);
+        busca(no->getDir(), chave);
+    }else{
+        cout << "Not found" << '\n';
+        //return;
     }
+    //return -1;
 }
 
 int main(int argc, char *argv[]) {
@@ -98,9 +117,14 @@ int main(int argc, char *argv[]) {
     arv.inserir(4);
     arv.inserir(7);
 
+    cout << "====================" << endl;
     cout << "Percorrendo em ordem" << endl;
+    cout << "====================" << endl;
 
     arv.emOrdem(arv.getRaiz());
     cout << endl;
+
+    arv.busca(arv.getRaiz(), 7);// << endl;
+
     return 0;
 }
