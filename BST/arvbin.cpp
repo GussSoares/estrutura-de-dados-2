@@ -74,6 +74,7 @@ void Arvore::emOrdem(No* no){
         cout << no->getChave() << " ";
         emOrdem(no->getDir());
     }
+
 }
 
 // void Arvore::imprimir(No* no){
