@@ -1,29 +1,106 @@
-#include <iostream>
+#include "arvbin.h"
 
 using namespace std;
 
-No(int chave){
-    this->chave = chave;
-    esq = NULL;
-    dir = NULL;
-}
+//class No
+
+// No(int chave){
+//     this->chave = chave;
+//     esq = NULL;
+//     dir = NULL;
+// }
 
 int No::getChave(){
     return chave;
 }
 
-No* getEsq(){
+No* No::getEsq(){
     return esq;
 }
 
-void setEsq(No* no){
-    this->esq = no;
+void No::setEsq(No* no){
+    esq = no;
 }
 
-No* getDir(){
+No* No::getDir(){
     return dir;
 }
 
-void setDir(No* no){
-    this->dir = no;
+void No::setDir(No* no){
+    dir = no;
+}
+
+//Class Arvore
+
+// Arvore(){
+//     raiz = NULL;
+// }
+
+void Arvore::inserir(int chave){
+
+    if(raiz == nullptr){
+        raiz = new No(chave);
+    }else{
+        inserirAux(raiz, chave);
+    }
+}
+
+void Arvore::inserirAux(No* no, int chave){
+
+    if(chave < no->getChave()){
+        if(no->getEsq() == nullptr){
+            No* novo_no = new No(chave);
+            no->setEsq(novo_no);
+        }else{
+            inserirAux(no->getEsq(), chave);
+        }
+    }else if(chave > no->getChave()){
+        if(no->getDir() == nullptr){
+            No* novo_no = new No(chave);
+            no->setDir(novo_no);
+        }else{
+            inserirAux(no->getDir(), chave);
+        }
+    }
+}
+
+No* Arvore::getRaiz(){
+    return raiz;
+}
+
+void Arvore::emOrdem(No* no){
+    if(no != nullptr){
+        emOrdem(no->getEsq());
+        cout << no->getChave() << " ";
+        emOrdem(no->getDir());
+    }
+}
+
+void Arvore::imprimir(No* no){
+    if(no != nullptr){
+        emOrdem(no->getEsq());
+        cout << no->getChave() << " ";
+        emOrdem(no->getDir());
+    }
+}
+
+int main(int argc, char *argv[]) {
+    /* code */
+    Arvore arv;
+
+    arv.inserir(8);
+    arv.inserir(10);
+    arv.inserir(14);
+    arv.inserir(13);
+    arv.inserir(3);
+    arv.inserir(1);
+    arv.inserir(6);
+    arv.inserir(4);
+    arv.inserir(7);
+
+    cout << "Percorrendo em ordem" << endl;
+
+    arv.emOrdem(arv.getRaiz());
+    cout << endl;
+    return 0;
 }
