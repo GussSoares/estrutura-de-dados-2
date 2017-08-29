@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -32,4 +33,5 @@ public:
     void emOrdem(No* no);
     //void imprimir(No* no);
     void busca(No* no, int chave);
+    void imprimir(No* raiz, int ident);
 };

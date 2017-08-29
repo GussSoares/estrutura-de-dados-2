@@ -77,14 +77,36 @@ void Arvore::emOrdem(No* no){
 
 }
 
-// void Arvore::imprimir(No* no){
-//     if(no != nullptr){
-//         emOrdem(no->getEsq());
-//         cout << no->getChave() << " ";
-//         emOrdem(no->getDir());
+void Arvore::imprimir(No* raiz, int ident){
+    if(raiz != nullptr){
+        if(raiz->getDir())
+            imprimir(raiz->getDir(), ident + 5);
+        if(ident)
+            cout << setw(ident) << ' ';
+        if(raiz->getDir()) cout << " /\n" << setw(ident) << ' ';
+        cout << '(' << raiz->getChave() << ")\n";
+        if(raiz->getEsq()){
+            cout << setw(ident) << ' ' << " \\\n";
+            imprimir(raiz->getEsq(), ident + 5);
+        }
+    }
+}
+
+// void avl_tree<T>::show(avl_tree<T>::node *_root, int indent)
+// {
+//     if (_root != nullptr) {
+//         if (_root->right)
+//             show(_root->right, indent + 5);
+//         if (indent)
+//             std::cout « std::setw(indent) « ' ';
+//         if (_root->right) std::cout « " /\n" « std::setw(indent) « ' ';
+//         std::cout « '(' « _root->key « ")\n";
+//         if (_root->left) {
+//             std::cout « std::setw(indent) « ' ' « " \\\n";
+//             show(_root->left, indent + 5);
+//         }
 //     }
 // }
-
 
 void Arvore::busca(No* no, int chave){
     if(no != nullptr){
@@ -125,7 +147,7 @@ int main(int argc, char *argv[]) {
     arv.emOrdem(arv.getRaiz());
     cout << endl;
 
-    arv.busca(arv.getRaiz(), 7);// << endl;
-
+    //arv.busca(arv.getRaiz(), 7);// << endl;
+    arv.imprimir(arv.getRaiz(), 2);
     return 0;
 }
