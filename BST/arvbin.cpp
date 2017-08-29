@@ -4,11 +4,11 @@ using namespace std;
 
 //class No
 
-// No(int chave){
-//     this->chave = chave;
-//     esq = NULL;
-//     dir = NULL;
-// }
+No::No(int chave){
+    this->chave = chave;
+    esq = NULL;
+    dir = NULL;
+}
 
 int No::getChave(){
     return chave;
@@ -32,9 +32,9 @@ void No::setDir(No* no){
 
 //Class Arvore
 
-// Arvore(){
-//     raiz = NULL;
-// }
+Arvore::Arvore(){
+    raiz = nullptr;
+}
 
 void Arvore::inserir(int chave){
 
@@ -83,7 +83,8 @@ void Arvore::imprimir(No* raiz, int ident){
             imprimir(raiz->getDir(), ident + 5);
         if(ident)
             cout << setw(ident) << ' ';
-        if(raiz->getDir()) cout << " /\n" << setw(ident) << ' ';
+        if(raiz->getDir())
+            cout << " /\n" << setw(ident) << ' ';
         cout << '(' << raiz->getChave() << ")\n";
         if(raiz->getEsq()){
             cout << setw(ident) << ' ' << " \\\n";
@@ -93,22 +94,30 @@ void Arvore::imprimir(No* raiz, int ident){
 }
 
 
-void Arvore::busca(No* no, int chave){
-    if(no != nullptr){
-
-        if (chave == no->getChave()) {
-            cout << '\n' << "================" << endl;
-            cout         << "Busca concluída!" << '\n' << "Item encontrado!" << '\n';
-            cout         << "================" << endl;
-            //return;
-        }
-        busca(no->getEsq(), chave);
-        busca(no->getDir(), chave);
+bool Arvore::busca(No* no, int chave){
+    if(no == nullptr)
+        return false;
+    if (chave == no->getChave()) {
+        cout << '\n' << "================" << endl;
+        cout         << "Busca concluída!" << '\n' << "Item encontrado!" << '\n';
+        cout         << "================" << endl;
+        return true;
     }else{
-        cout << "Not found" << '\n';
-        //return;
+        return max(busca(no->getEsq(), chave), busca(no->getDir(), chave));
     }
-    //return -1;
+}
+
+int Arvore::altura(No* no){
+    if(no == nullptr)
+        return -1;
+    else{
+        int esq = altura(no->getEsq());
+        int dir = altura(no->getDir());
+        if(esq < dir)
+            return dir+1;
+        else
+            return esq+1;
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -132,7 +141,18 @@ int main(int argc, char *argv[]) {
     arv.emOrdem(arv.getRaiz());
     cout << endl;
 
-    //arv.busca(arv.getRaiz(), 7);// << endl;
+    cout << arv.busca(arv.getRaiz(), 7) << endl;
+
+    cout << "=================" << endl;
+    cout << "Imprimir a Árvore" << endl;
+    cout << "=================" << endl;
     arv.imprimir(arv.getRaiz(), 0);
+
+    cout << "================" << endl;
+    cout << "Altura da Árvore" << endl;
+    cout << "================" << endl;
+
+    cout << arv.altura(arv.getRaiz()) << endl;
+
     return 0;
 }

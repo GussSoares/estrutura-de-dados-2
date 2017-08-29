@@ -8,11 +8,7 @@ private:
     No *esq, *dir;
     int chave;
 public:
-    No(int chave){
-        this->chave = chave;
-        esq = nullptr;
-        dir = nullptr;
-    }
+    No(int chave);
     int getChave();
     No* getEsq();
     void setEsq(No* no);
@@ -24,14 +20,12 @@ class Arvore{
 private:
     No* raiz;
 public:
-    Arvore(){
-        raiz = nullptr;
-    }
+    Arvore();
     void inserir(int chave);
     void inserirAux(No* no, int chave);
     No* getRaiz();
     void emOrdem(No* no);
-    //void imprimir(No* no);
-    void busca(No* no, int chave);
+    bool busca(No* no, int chave);
     void imprimir(No* raiz, int ident);
+    int altura(No* no);
 };
