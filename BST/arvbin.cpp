@@ -107,6 +107,10 @@ bool Arvore::busca(No* no, int chave){
     }
 }
 
+void Arvore::remover(No* no, int chave){
+
+}
+
 int Arvore::altura(No* no){
     if(no == nullptr)
         return -1;

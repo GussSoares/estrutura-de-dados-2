@@ -28,4 +28,5 @@ public:
     bool busca(No* no, int chave);
     void imprimir(No* raiz, int ident);
     int altura(No* no);
+    void remover(No* no, int chave);
 };
