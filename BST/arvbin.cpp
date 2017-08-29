@@ -148,6 +148,6 @@ int main(int argc, char *argv[]) {
     cout << endl;
 
     //arv.busca(arv.getRaiz(), 7);// << endl;
-    arv.imprimir(arv.getRaiz(), 2);
+    arv.imprimir(arv.getRaiz(), 0);
     return 0;
 }
