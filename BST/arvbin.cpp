@@ -92,21 +92,6 @@ void Arvore::imprimir(No* raiz, int ident){
     }
 }
 
-// void avl_tree<T>::show(avl_tree<T>::node *_root, int indent)
-// {
-//     if (_root != nullptr) {
-//         if (_root->right)
-//             show(_root->right, indent + 5);
-//         if (indent)
-//             std::cout « std::setw(indent) « ' ';
-//         if (_root->right) std::cout « " /\n" « std::setw(indent) « ' ';
-//         std::cout « '(' « _root->key « ")\n";
-//         if (_root->left) {
-//             std::cout « std::setw(indent) « ' ' « " \\\n";
-//             show(_root->left, indent + 5);
-//         }
-//     }
-// }
 
 void Arvore::busca(No* no, int chave){
     if(no != nullptr){
